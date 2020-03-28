@@ -3,16 +3,11 @@ from flask import render_template
 from app.forms import SearchForm
 from app.find_recipes import find_matching_recipes, get_one_recipe
 
-@app.route('/')
-@app.route('/index')
-#random recipe
-def index():
-    posts = [{"username": "alex", "body": "haha"}, {"username": "xue", "body": "gogo"}]
-    user = {"username": "alex_xue"}
-    return render_template('index.html',posts = posts, user=user, title = "Home")
+@app.route('/info')
+def info():
+    return render_template('index.html', title = "Home")
 
-
-@app.route('/search', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def search():
     form = SearchForm()
     if form.add_entry.data:
