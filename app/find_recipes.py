@@ -1,7 +1,6 @@
 from recipe_finder import recipe_dictionary
 
 def find_matching_recipes(ingredient_list):
-    print(ingredient_list)
     valid_recipes = []
     for recipe in recipe_dictionary.find():
         if 'ingredients' not in recipe:
