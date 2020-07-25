@@ -1,8 +1,19 @@
-from recipe_finder import recipe_dictionary
+#from recipe_finder import recipe_dictionary
+import os
+import json
+
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
 
 def find_matching_recipes(ingredient_list):
+    
+    with open(os.path.join(__location__, 'full_format_recipes.json') ) as f:
+        recipe_dictionary = json.load(f)
+
+
     valid_recipes = []
-    for recipe in recipe_dictionary.find():
+    for recipe in recipe_dictionary:
         if 'ingredients' not in recipe:
             continue
         dont_add_to_list = False
@@ -22,7 +33,15 @@ def find_matching_recipes(ingredient_list):
     return valid_recipes
 
 def get_one_recipe(title):
-    return recipe_dictionary.find_one({'title': title})
+
+    with open(os.path.join(__location__, 'full_format_recipes.json')) as f:
+        recipe_dictionary = json.load(f)
+
+    for recipe in recipe_dictionary:
+        if recipe['title'] == title:
+            return recipe
+    
+    #return recipe_dictionary.find_one({'title': title})
 
 
 

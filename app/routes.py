@@ -2,6 +2,9 @@ from app import app
 from flask import render_template
 from app.forms import SearchForm
 from app.find_recipes import find_matching_recipes, get_one_recipe
+import json
+
+
 
 @app.route('/info')
 def info():
